@@ -66,4 +66,3 @@ done
 #run_cmd run "oc scale --replicas=1 replicationcontrollers $APP-mongodb-1"
 
 #run_cmd echo "TO CLEAN UP AND DESTROY THE PROJECT, run 'oc delete project $project'"
-
