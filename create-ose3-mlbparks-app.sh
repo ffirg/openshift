@@ -59,6 +59,14 @@ do
   run_cmd run "oc get $i | grep $APP"
 done
 
+# To inspect inside a running container...
+#DB_POD="`oc get pods | grep mongodb | awk '{print $1}'`"
+#oc exec -tip $DB_POD -- bash
+# To login into the DB use...
+# oc export pod $DB_POD >/tmp/a
+# Get the MONGODB_USER, MONGODB_PASSWORD and MONGODB_DATABASE values and then use something like...
+# oc exec -tip $DB_POD -- bash -c 'mongo -u userriT -p MdMVQQvA root'
+
 #run_cmd echo "LET'S SCALE UP THE FRONT END SERVICE..."
 #run_cmd run "oc scale --replicas=3 replicationcontrollers $APP-1"
 
