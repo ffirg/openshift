@@ -4,6 +4,20 @@ Scripts for stepping through OSE demo examples
 ### Setup
 Using demobuilder all-in-one image as your base, open up the console and fire up the Firefox browser and a Terminal.
 
+### What They Demo
+
+```
+$ create-ose3-mlbparks-app.sh
+```
+
+```
+
+```
+
+```
+
+```
+
 ### Running
 In the Terminal (as the demo user):
 ```
