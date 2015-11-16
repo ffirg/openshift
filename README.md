@@ -10,7 +10,7 @@ Using demobuilder all-in-one image as your base, open up the console and fire up
 $ create-ose3-mlbparks-app.sh
 ```
 
-Created the visually appealing MLBParks example. Overlays baseball venues on to Google Maps.
+Creates the visually appealing MLBParks example. Overlays baseball venues on to Google Maps.
 MongoDB is used for the back-end database, so this demonstrates a multi-tiered application.
 
 ```
@@ -29,7 +29,7 @@ Shows how you can deploy 2 versions of the same application, and 'flick' the exp
 $ create-ose3-app-ab-deployment.sh
 ```
 
-Show how to do rolling A-B or Canary style deployments. Bring application version one into service. Then change the code to make version 2 and deploy that into the service but in incremental stages. Turn off version 1, once everyones happy with version 2. Enables a lower risk application deployment strategy, with rollback capabilities.
+Shows how to do rolling A-B or Canary style deployments. Bring application version one into service. Then change the code to make version 2 and deploy that into the service but in incremental stages. Turn off version 1, once everyones happy with version 2. Enables a lower risk application deployment strategy, with rollback capabilities.
 
 ### Running
 In the Terminal (as the demo user):
