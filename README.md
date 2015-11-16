@@ -1,5 +1,5 @@
 # Openshift
-Scripts for stepping through OSE demo examples, showcasing various application and scenarios.
+Scripts for stepping through OSE demo examples, showcasing various applications and scenarios.
 
 ### Setup
 Using demobuilder all-in-one image as your base, open up the console and fire up the Firefox browser and a Terminal.
