@@ -52,6 +52,7 @@ check_build () {
 # START
 echo
 echo "EXAMPLE OPENSHIFT v3 APP BLUE/GREEN DEPLOYMENT"
+echo "*** ENSURE color is set to $blue first in $SRC image.php ***"
 echo
 
 run_cmd echo "First login into OSE (as $DEMO_USER user)..."
