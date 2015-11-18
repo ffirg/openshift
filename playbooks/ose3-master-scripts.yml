@@ -5,10 +5,10 @@
   tasks:
 
   - name: "copy over walkthrough OSE demo project script #1 - AB Deployments"
-    copy: src=~/ose/ansible/files/create-ose3-app-ab-deployment.sh dest=/home/demo owner=demo mode=0755 backup=yes
+    copy: src=~/openshift/create-ose3-app-ab-deployment.sh dest=/home/demo owner=demo mode=0755 backup=yes
   - name: "copy over walkthrough OSE demo project script #2 - BG Rolling Deployments"
-    copy: src=~/ose/ansible/files/create-ose3-app-bluegreen-deployment.sh dest=/home/demo owner=demo mode=0755 backup=yes
+    copy: src=~/openshift/create-ose3-app-bluegreen-deployment.sh dest=/home/demo owner=demo mode=0755 backup=yes
   - name: "copy over walkthrough OSE demo project script #3 - App Promotion Acress Envs"
-    copy: src=~/ose/ansible/files/create-ose3-app-promo-envs.sh dest=/home/demo owner=demo mode=0755 backup=yes
+    copy: src=~/openshift/create-ose3-app-promo-envs.sh dest=/home/demo owner=demo mode=0755 backup=yes
   - name: "copy over walkthrough OSE demo project script #4 - MLBParks Google Maps demo"
-    copy: src=~/ose/ansible/files/create-ose3-mlbparks-app.sh dest=/home/demo owner=demo mode=0755 backup=yes
+    copy: src=~/openshift/create-ose3-mlbparks-app.sh dest=/home/demo owner=demo mode=0755 backup=yes
