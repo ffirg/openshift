@@ -19,3 +19,18 @@ $ ansible-playbook -i ./ansible_hosts ./ose3-master-scripts.yml
 
 ### Vagrant auto provisioning
 
+You can get vagrant to auto provision as part of the initialisation. *This isn't working currently - looks like an issue with SSH keys, so use this as a reference only*
+
+Add this to your Vagrantfile:
+
+```
+# If you want to do some ansible provisioning, this is how...
+  config.vm.provision "ansible" do |ansible|
+    #ansible.limit = 'ose-offline-demo'
+    #ansible.inventory_path = "ansible/ansible_hosts"
+    ansible.playbook = "ansible/ose3-master-scripts.yml"
+  end
+```
+
+When you run ```vagrant up``` it'll call the provisioning plugin to deploy.
+If your VM is already up, then use ```vagrant provision```
