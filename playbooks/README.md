@@ -3,7 +3,8 @@ You can use these to auto deploy the walkthrough demo scripts, used in conjuncti
 
 ### Setup
 
-You have a demobuilder all-in-one master/node VM up and running.
+You have a demobuilder all-in-one master/node VM, or vagrant config to bring it up.
+
 You might need to change the entries in the ansible_hosts file if you've different OSE hostnames
 
 You already have a local ansible client installed and SSH keys setup as per the normal ansible installation/setup guides.
@@ -17,7 +18,7 @@ $ cd playbooks
 $ ansible-playbook -i ./ansible_hosts ./ose3-master-scripts.yml
 ```
 
-### Vagrant auto provisioning
+### Vagrant Auto Provisioning
 
 You can get vagrant to auto provision as part of the initialisation. *This isn't working currently - looks like an issue with SSH keys, so use this as a reference only*
 
