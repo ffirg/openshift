@@ -14,7 +14,7 @@ You already have a local ansible client installed and SSH keys setup as per the 
 To install the demo scripts from a client CLI:
 
 ```
-$ cd playbooks
+$ cd ~/openshift/playbooks
 $ ansible-playbook -i ./ansible_hosts ./ose3-master-scripts.yml
 ```
 
