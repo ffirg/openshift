@@ -1,0 +1,16 @@
+#[local]
+#localhost	ansible_connection=local
+
+[master]
+ose3-master.example.com ansible_connection=ssh ansible_ssh_user=root
+
+[nodes]
+ose3-node1.example.com ansible_connection=ssh ansible_ssh_user=root
+ose3-node2.example.com ansible_connection=ssh ansible_ssh_user=root
+
+[ose3:children]
+master
+nodes
+
+[all:children]
+ose3
