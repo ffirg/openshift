@@ -38,6 +38,6 @@ In the Terminal (as the demo user):
 $ cd /home/demo
 $ git clone https://github.com/ffirg/openshift.git
 $ cd openshift
-$./create-ose3-mlbparks-app.sh etc
+$./create-ose3-mlbparks-app.sh
 ```
 Follow the prompts!
