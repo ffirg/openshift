@@ -18,13 +18,13 @@ MongoDB is used for the back-end database, so this demonstrates a multi-tiered a
 $ create-ose3-app-promo-envs.sh
 ```
 
-Demonstrates how an application can be 'promoted' from one environment to another. The example uses Development & Test/QA, to show how an application can be released in a manual and controlled manner.
+Demonstrates how an application can be 'promoted' from one environment to another. The example uses Development & Test/QA, to show how an application can be released in a manual and controlled manner.  See https://www.youtube.com/watch?v=Rzsa6VJRGDw for a demo. 
 
 ```
 $ create-ose3-app-bluegreen-deployment.sh
 ```
 
-Shows how you can deploy 2 versions of the same application, and 'flick' the exposed route between them to allow one service or the other to be used. This example could be used in environments where there is still fairly rigid change control, who like a more 'big bang' release approach still. Could also be used for DR testing for the application on a regular basis!
+Shows how you can deploy 2 versions of the same application, and 'flick' the exposed route between them to allow one service or the other to be used. This example could be used in environments where there is still fairly rigid change control, who like a more 'big bang' release approach still. Could also be used for DR testing for the application on a regular basis! See https://www.youtube.com/watch?v=Rzsa6VJRGDw for a demo. 
 
 ```
 $ create-ose3-app-ab-deployment.sh
