@@ -3,7 +3,7 @@ Scripts for stepping through OSE demo examples, showcasing various applications 
 Based on the most excellent working demos done by Veer -> https://github.com/VeerMuchandi
 
 ### Setup
-Using demobuilder all-in-one image as your base, open up the console and fire up the Firefox browser and a Terminal.
+Using demobuilder all-in-one image as your base (https://github.com/RedHatEMEA/demobuilder), open up the console and fire up the Firefox browser and a Terminal.
 
 ### What They Demo
 
