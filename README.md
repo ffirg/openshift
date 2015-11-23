@@ -7,6 +7,7 @@ Using demobuilder all-in-one image as your base (https://github.com/RedHatEMEA/d
 
 ### What They Demo
 
+#### MLB Parks
 ```
 $ create-ose3-mlbparks-app.sh
 ```
@@ -30,7 +31,7 @@ $ create-ose3-app-bluegreen-deployment.sh
 2. Edit the create-ose3-app-bluegreen-deployment.sh script to reference the new forked project.
 3. Run the script (create-ose3-app-bluegreen-deployment.sh).   Once you build "blue", you need to pop out and then do a code change to image.php (comment out blue and uncomment green).  Run through the rest of the script. 
 
-
+#### AB Deployment 
 Shows how you can deploy 2 versions of the same application, and 'flick' the exposed route between them to allow one service or the other to be used. This example could be used in environments where there is still fairly rigid change control, who like a more 'big bang' release approach still. Could also be used for DR testing for the application on a regular basis! See https://www.youtube.com/watch?v=Rzsa6VJRGDw for a demo. 
 
 ```
