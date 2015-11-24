@@ -14,7 +14,7 @@ Vagrant.configure(2) do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "rhel-server-7:gui:ose-3.0:offline:demo:vagrant-virtualbox"
   config.vm.provider :virtualbox do |vb|
-    vb.name = "ose-offline-demo"
+    vb.name = "ose30-offline-demo"
     vb.customize [
         "modifyvm", :id,
         "--groups", "/Openshift",
@@ -27,7 +27,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "ansible" do |ansible|
     #ansible.limit = 'ose-offline-demo'
     #ansible.inventory_path = "ansible/ansible_hosts"
-    ansible.playbook = "ansible/ose3-master-scripts.yml"
+    # ansible.playbook = "ansible/ose3-master-scripts.yml"
   end
 
   config.vm.post_up_message =
