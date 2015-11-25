@@ -2,6 +2,8 @@
 Scripts for stepping through OSE demo examples, showcasing various applications and scenarios.
 Based on the most excellent working demos done by Veer -> https://github.com/VeerMuchandi
 
+These are primarily for Openshift Enterprise version 3.1.0
+
 ### Setup
 Using demobuilder all-in-one image as your base (https://github.com/RedHatEMEA/demobuilder), open up the console and fire up the Firefox browser and a Terminal.
 
