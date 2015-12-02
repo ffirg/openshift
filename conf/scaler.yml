@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: frontend-scaler 
+spec:
+  scaleRef:
+    kind: DeploymentConfig 
+    name: welcome-php
+    apiVersion: v1 
+    subresource: scale
+  minReplicas: 1 
+  maxReplicas: 10 
+  cpuUtilization:
+    targetPercentage: 5
