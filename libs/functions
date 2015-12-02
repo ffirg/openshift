@@ -52,9 +52,21 @@ check_build () {
 }
 
 # -------------------------------------------------------------------------------
-# FUNCTION TO GET OC VERSION IN CASE THINGS CHANGE ACROSS REVISIONS (& THEY DO)
+# RETURN OC VERSION IN CASE THINGS CHANGE ACROSS REVISIONS (& THEY DO)
 # VERSION 3.1 RETURNS "3.1.0"
 # VERSION 3.0 RETURNS "3.0.2" (last tested version)
 # -------------------------------------------------------------------------------
 
 export OC_VERSION=`oc version | grep oc | sed -n 's/oc[ ]v\([0-9].[0-9].[0-9]\).*/\1/p'`
+
+# -------------------------
+# RETURN LIST OF PROJECTS
+# -------------------------
+
+export OC_PROJECTS=`oc get projects | sed '1d' | awk '{print $1}'`
+
+# ---------------
+# GET USERS UID
+# ---------------
+
+export MY_UID="`id -u`"
