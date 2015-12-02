@@ -57,7 +57,7 @@ oc scale dc/$APP1 --replicas=$pods
 run_cmd echo "We should now have $pods pods running..."
 run_cmd run "oc get pods"
 
-run_cmd echo "We have check what we're hitting with a simple curl test:"
+run_cmd echo "We can check what we're hitting with a simple curl test:"
 for i in {1..10}; do curl abdeploy.example.com; echo " "; done
 
 # Make change to source code...
