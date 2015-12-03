@@ -43,7 +43,7 @@ run_cmd run "oc get route"
 run_cmd echo "Let's expose it..."
 run_cmd run "oc expose svc blue --name=bluegreen --hostname=bluegreen.example.com"
 
-run_cmd echo "NOW CHANGE THE SOURCE CODE FROM BLUE TO GREEN IMAGE..."
+run_cmd echo "NOW CHANGE THE SOURCE CODE @ ${SRC} . Change image.php from BLUE to GREEN."
 
 run_cmd echo "Create new app - call it the \"$GREEN_APP\" service"
 run_cmd run "oc new-app $SRC --name=$GREEN_APP"
