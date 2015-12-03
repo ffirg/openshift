@@ -56,7 +56,7 @@ $ ./create-ose3-app-ab-deployment.sh
 ##### Demo steps
 1. Please fork the project https://github.com/VeerMuchandi/ab-deploy.git
 2. Edit the create-ose3-app-ab-deployment.sh script to reference the new forked project.
-3. Run the script (./create-ose3-app-ab-deployment.sh).   Once you build "app-a", you need to pop out and then do a code change to index.php (change VERSION 1 to VERSION 2).  Run through the rest of the script. 
+3. Run the script (./create-ose3-app-ab-deployment.sh). Once you build "app-a", you need to pop out and then do a code change to index.php (the script will tell you this). Run through the rest of the script. 
 
 
 ### Running
