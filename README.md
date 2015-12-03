@@ -49,14 +49,11 @@ $ ./create-ose3-app-bluegreen-deployment.sh
 #### AB Deployment 
 Demonstrates how to do rolling A-B or Canary style deployment. Bring application version 1 into service. Then change the code to make version 2 and deploy that into the service but in incremental stages. Turn off version 1, once everyones happy with version 2. Enables a lower risk application deployment strategy, with rollback capabilities.
 
-```
-$ ./create-ose3-app-ab-deployment.sh
-```
-
 ##### Demo steps
 1. Please fork the project https://github.com/VeerMuchandi/ab-deploy.git
-2. Edit the create-ose3-app-ab-deployment.sh script to reference the new forked project.
-3. Run the script (./create-ose3-app-ab-deployment.sh). Once you build "app-a", you need to pop out and then do a code change to index.php (the script will tell you this). Run through the rest of the script. 
+2. vi create-ose3-app-ab-deployment.sh script to reference the new forked project (SRC= line near the top)
+3. ./create-ose3-app-ab-deployment.sh 
+(Once it builds "app-a", you need to pop over to your forked repo and do a code change to index.php - the script will tell you this). Run through the rest of the script. 
 
 
 ### Running
