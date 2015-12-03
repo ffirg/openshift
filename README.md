@@ -26,8 +26,8 @@ $ ./create-ose3-mlbparks-app.sh
 ```
 
 
-#### Code promotion between enivornments Deployment *** NOT CURRENTLY WORKING !!! ***
-Demonstrates how an application can be 'promoted' from one environment to another. The example uses Development & Test/QA, to show how an application can be released in a manual and controlled manner.  See https://www.youtube.com/watch?v=Rzsa6VJRGDw for a demo. 
+#### Code Promotion Between Environments *** NOT CURRENTLY WORKING !!! ***
+Demonstrates how an application can be 'promoted' from one environment (namespace) to another. The example uses Development & Test/QA, to show how an application can be released in a manual and controlled manner.  See https://www.youtube.com/watch?v=Rzsa6VJRGDw for a demo. 
 
 ```
 $ ./create-ose3-app-promo-envs.sh
@@ -47,7 +47,7 @@ $ ./create-ose3-app-bluegreen-deployment.sh
 3. Run the script (./create-ose3-app-bluegreen-deployment.sh).   Once you build "blue", you need to pop out and then do a code change to image.php (comment out blue and uncomment green).  Run through the rest of the script. 
 
 #### AB Deployment 
-Demonstrates how to do rolling A-B or Canary style deployment. Bring application version one into service. Then change the code to make version 2 and deploy that into the service but in incremental stages. Turn off version 1, once everyones happy with version 2. Enables a lower risk application deployment strategy, with rollback capabilities.
+Demonstrates how to do rolling A-B or Canary style deployment. Bring application version 1 into service. Then change the code to make version 2 and deploy that into the service but in incremental stages. Turn off version 1, once everyones happy with version 2. Enables a lower risk application deployment strategy, with rollback capabilities.
 
 ```
 $ ./create-ose3-app-ab-deployment.sh
@@ -64,7 +64,7 @@ In the Terminal (as the demo user):
 ```
 $ cd /home/demo
 $ git clone https://github.com/ffirg/openshift.git
-$ cd openshift
+$ cd openshift/bin
 $ ./create-ose3-app-ab-deployment.sh
 ```
 Follow the prompts! Some scripts need to be as run (for system:admin privileges) but the scripts check and advise :)
