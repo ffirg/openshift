@@ -61,7 +61,8 @@ run_cmd echo "We can check what we're hitting with a simple curl test:"
 for i in {1..10}; do curl abdeploy.example.com; echo " "; done
 
 # Make change to source code...
-run_cmd echo "GO MAKE A CHANGE TO THE SOURCE CODE - MAKE IT VERSION 2..."
+echo
+run_cmd echo "GO MAKE A CHANGE TO THE SOURCE CODE @ ${SRC} and change VERSION 1 to VERSION 2 in index.php"
 
 run_cmd echo "Create another app - call it \"$APP2\" but use the SAME service label:"
 run_cmd run "oc new-app $SRC --name=$APP2 --labels=$LABELS"
