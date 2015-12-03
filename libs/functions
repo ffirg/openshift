@@ -1,0 +1,72 @@
+#
+# functions: stuff we use over and over again...
+#
+
+# ---------------------------------------------
+# FUNCTION TO DO THE GRUNT WORK, STEP BY STEP
+# [WE EITHER ECHO A COMMAND OR RUN IT...]
+# ---------------------------------------------
+
+run_cmd () {
+ if [ $1 = "echo" ]
+ then
+   shift
+   action="$*"
+   echo $action
+   echo "<RETURN> when ready"
+   read x
+ elif [ $1 = "run" ]
+ then
+   shift
+   action="$*"
+   echo $action
+   eval $action
+   echo
+ fi
+}
+
+# ----------------------------------------------------------------
+# FUNCTION TO WAIT UNTIL A BUILD HAS COMPLETED BEFORE WE PROCEED
+# ----------------------------------------------------------------
+
+check_build () {
+  build_status="`oc get builds | grep ${1}-1 | awk '{print $4}'`"
+  while true
+  do
+    if [ -z $build_status ]
+    then
+      echo "Whoops! There is no build image, something went wrong :("
+      exit 99
+    else
+      until [ $build_status = "Complete" ]
+      do
+        echo "$1 build is still $build_status..."
+        sleep 10
+        build_status="`oc get builds | grep ${1}-1 | awk '{print $4}'`"
+      done
+    fi
+    echo "$1 build is DONE!"
+    echo
+    break
+  done
+}
+
+# -------------------------------------------------------------------------------
+# RETURN OC VERSION IN CASE THINGS CHANGE ACROSS REVISIONS (& THEY DO)
+# VERSION 3.1 RETURNS "3.1.0"
+# VERSION 3.0 RETURNS "3.0.2" (last tested version)
+# -------------------------------------------------------------------------------
+
+export OC_VERSION=`oc version | grep oc | sed -n 's/oc[ ]v\([0-9].[0-9].[0-9]\).*/\1/p'`
+
+# -------------------------
+# RETURN LIST OF PROJECTS
+# -------------------------
+
+export OC_PROJECTS=`oc get projects | sed '1d' | awk '{print $1}'`
+
+# ---------------
+# GET USERS UID
+# ---------------
+
+export MY_UID="`id -u`"

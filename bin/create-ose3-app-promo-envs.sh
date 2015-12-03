@@ -8,25 +8,7 @@ DEV_ENV="development"
 TEST_ENV="testing"
 build_status="NULL"
 
-# function to do the grunt work, step by step
-run_cmd () {
- if [ $1 = "echo" ]
- then
-   shift
-   action="$*"
-   echo $action
-   echo "<RETURN> when ready"
-   read x 
- elif [ $1 = "run" ]
- then
-   shift
-   action="$*"
-   echo $action
-   eval $action
-   echo
- fi
-}
-
+. ../libs/functions
 
 # START
 echo
@@ -60,13 +42,14 @@ run_cmd echo "Do some DEV work!! Deploy the \"$APP\" application"
 run_cmd run "oc login -u dev1 -p ''"
 run_cmd run "oc get projects"
 run_cmd run "oc project development"
-run_cmd run "oc new-app --template=eap6-basic-sti -p APPLICATION_NAME=$APP,APPLICATION_HOSTNAME=${APP}-dev.apps.example.com,EAP_RELEASE=6.4,GIT_URI=https://github.com/VeerMuchandi/kitchensink.git,GIT_REF=,GIT_CONTEXT_DIR= -l name=$APP"
+# run_cmd run "oc new-app --template=eap64-basic-s2i https://github.com/VeerMuchandi/kitchensink.git name=$APP"
+run_cmd run "oc new-app openshift/ruby-20-centos7~https://github.com/openshift/ruby-hello-world.git --name=$APP"
 
 # force the build to start else there may be an variant timeout!
 run_cmd echo "Start an image build for $APP"
 run_cmd run "oc start-build $APP"
 run_cmd echo "The build is now going - watch until it completes to ensure there's an image available..."
-build_status="`oc get builds | grep ${APP}-1 | awk '{print $3}'`"
+build_status="`oc get builds | grep ${APP}-1 | awk '{print $4}'`"
 while true
 do
   if [ -z $build_status ]
@@ -78,7 +61,7 @@ do
     do
       echo "$APP build is still $build_status..."
       sleep 10
-      build_status="`oc get builds | grep ${APP}-1 | awk '{print $3}'`"
+      build_status="`oc get builds | grep ${APP}-1 | awk '{print $4}'`"
     done
   fi
   echo "$APP build is DONE!"

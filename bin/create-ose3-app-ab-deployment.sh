@@ -9,47 +9,8 @@ LABELS="abgroupmember=true"
 build_status="NULL"
 pods=4
 
-# function to do the grunt work, step by step
-run_cmd () {
- if [ $1 = "echo" ]
- then
-   shift
-   action="$*"
-   echo $action
-   echo "<RETURN> when ready"
-   read x 
- elif [ $1 = "run" ]
- then
-   shift
-   action="$*"
-   echo $action
-   eval $action
-   echo
- fi
-}
-
-# function to wait until build has completed before proceeding further
-check_build () {
-  build_status="`oc get builds | grep ${1}-1 | awk '{print $3}'`"
-  while true
-  do
-    if [ -z $build_status ]
-    then
-      echo "Whoops! There is no build image, something went wrong :("
-      exit 99
-    else
-      until [ $build_status = "Complete" ]
-      do
-        echo "$1 build is still $build_status..."
-        sleep 10
-        build_status="`oc get builds | grep ${1}-1 | awk '{print $3}'`"
-      done
-    fi
-    echo "$1 build is DONE!"
-    echo
-    break
-  done
-}
+# include all our functions...
+. ../libs/functions
 
 # START
 echo
@@ -96,7 +57,7 @@ oc scale dc/$APP1 --replicas=$pods
 run_cmd echo "We should now have $pods pods running..."
 run_cmd run "oc get pods"
 
-run_cmd echo "We have check what we're hitting with a simple curl test:"
+run_cmd echo "We can check what we're hitting with a simple curl test:"
 for i in {1..10}; do curl abdeploy.example.com; echo " "; done
 
 # Make change to source code...
