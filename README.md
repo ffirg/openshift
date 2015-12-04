@@ -22,7 +22,7 @@ Creates the visually appealing MLBParks example. Overlays baseball venues on to 
 MongoDB is used for the back-end database, JBoss EAP for the front-end, so this demonstrates a multi-tiered application, wired together in stages.
 
 ```
-$ ./create-ose3-mlbparks-app.sh
+$ ./create-ose3-app-mlbparks.sh
 ```
 
 
