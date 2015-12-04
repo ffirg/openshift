@@ -64,3 +64,14 @@ $ cd openshift/bin
 $ ./create-ose3-app-ab-deployment.sh
 ```
 Follow the prompts! Some scripts need to be as run (for system:admin privileges) but the scripts check and advise :)
+
+### Cleaning Up
+You can use this little utility to remove one or more of the demo project namespaces.
+ If you want to cycle through and remove selective projects, then just run:
+```
+./cleanup-envs.sh
+```
+ If you want to remove all projects, use:
+```
+./cleanup-envs.sh -p all
+```
