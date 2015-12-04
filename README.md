@@ -17,9 +17,9 @@ Using demobuilder all-in-one image as your base (https://github.com/RedHatEMEA/d
 
 ### What They Demo
 
-#### MLB Parks *** NOT CURRENTLY WORKING !!! ***
+#### MLB Parks 
 Creates the visually appealing MLBParks example. Overlays baseball venues on to Google Maps.
-MongoDB is used for the back-end database, so this demonstrates a multi-tiered application.
+MongoDB is used for the back-end database, JBoss EAP for the front-end, so this demonstrates a multi-tiered application, wired together in stages.
 
 ```
 $ ./create-ose3-mlbparks-app.sh
