@@ -13,6 +13,11 @@ cleanup-envs.sh
 Deletes namespace projects
 
 ```
+create-ose3-app-mlbparks.sh
+```
+Creates the JBoss EAP and MongoDB MLBParks demo app.
+
+```
 create-ose3-app-ab-deployment.sh
 ```
 Creates the A-B Rolling Deployment app scenario.
