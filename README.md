@@ -26,8 +26,8 @@ $ ./create-ose3-app-mlbparks.sh
 ```
 
 
-#### Code Promotion Between Environments *** NOT CURRENTLY WORKING !!! ***
-Demonstrates how an application can be 'promoted' from one environment (namespace) to another. The example uses Development & Test/QA, to show how an application can be released in a manual and controlled manner.  See https://www.youtube.com/watch?v=Rzsa6VJRGDw for a demo. 
+#### Code Promotion Between Environments 
+Demonstrates how an application can be 'promoted' from one environment (namespace) to another. The example uses Development & Test/QA, to show how an application can be released in a manual and controlled manner, using image tagging, from one environment to another.  See https://www.youtube.com/watch?v=Rzsa6VJRGDw for a demo. 
 
 ```
 $ ./create-ose3-app-promo-envs.sh
