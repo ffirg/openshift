@@ -7,8 +7,8 @@
   "spec": {
     "hard": {
       "memory": "1Gi",
-      "cpu": "20",
-      "pods": "4",
+      "cpu": "1",
+      "pods": "3",
       "services": "5",
       "replicationcontrollers":"5",
       "resourcequotas":"2"

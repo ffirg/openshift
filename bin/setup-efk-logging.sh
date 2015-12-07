@@ -8,15 +8,14 @@ OSE_MASTER="openshift.example.com"
 LIBDIR="../libs"
 CONFDIR="../conf"
 USER="demo"
-MDSA="metrics-deployer-service-account.yml"
+LDSA="logging-deployer-service-account.yml"
 PROJECT="logging"
 
 . ${LIBDIR}/functions
 
 # START
 echo
-echo "*** SETUP OPENSHIFT EFK LOGGING ***"
-echo "*** THIS USES AUTO GENERATED CERTS AND NON-PERSISTENT METRICS STORAGE ***"
+echo "*** SETUP CENTRALISED OPENSHIFT EFK LOGGING ***"
 echo
 
 # Need to run as root so we are SYSTEM:ADMIN
@@ -26,70 +25,63 @@ then
   exit 1
 fi
 
+run_cmd echo "Creating ${PROJECT} project..."
+run_cmd run "oc new-project ${PROJECT}"
 run_cmd echo "Log in to the ${PROJECT} project..."
 run_cmd run "oc project ${PROJECT}"
 
-if [ ! -r ${CONFDIR}/${MDSA} ]
+run_cmd echo "Setting up deployer secrets (ssshhhh...)"
+run_cmd run "oc secrets new logging-deployer kibana.crt=../conf/kibana.crt kibana.key=../conf/kibana.key"
+
+if [ ! -r ${CONFDIR}/${LDSA} ]
 then
-  echo "Whoops! ${MDSA} is missing :("
+  echo "Whoops! ${LDSA} is missing :("
   echo "Creating a sample one ..."
   mkdir ${CONFDIR} >/dev/null 2>&1
-  cat > ${CONFDIR}/${MDSA} <<EOF
+  cat > ${CONFDIR}/${LDSA} <<EOF
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: metrics-deployer
+  name: logging-deployer
 secrets:
-- name: metrics-deployer
+- name: logging-deployer
 EOF
   chown -R demo:demo ${CONFDIR} >/dev/null 2>&1
   chmod 755 ${CONFDIR} >/dev/null 2>&1
-  chmod 644 ${CONFDIR}/${MDSA} >/dev/null 2>&1
+  chmod 644 ${CONFDIR}/${LDSA} >/dev/null 2>&1
 fi
 
-run_cmd echo "Creating Metrics Deployer Service Account..."
-run_cmd run "oc create -f ${CONFDIR}/${MDSA}"
+run_cmd echo "Creating Logging Deployer Service Account..."
+run_cmd run "oc create -f ${CONFDIR}/${LDSA}"
 
 run_cmd echo "Grant correct permissions to accounts..."
-run_cmd run "oadm policy add-role-to-user edit system:serviceaccount:openshift-infra:metrics-deployer"
-run_cmd run "oadm policy add-cluster-role-to-user cluster-reader system:serviceaccount:openshift-infra:heapster"
+run_cmd run "oc policy add-role-to-user edit system:serviceaccount:logging:logging-deployer"
 
-# uncomment the following to use your own certs
-#oc secrets new metrics-deployer hawkular-metrics.pem=/home/openshift/metrics/hm.pem \
-#hawkular-metrics-ca.cert=/home/openshift/metrics/hm-ca.cert
+echo "Run use command -> oc edit scc/privileged"
+echo "And add this line to the service accounts:"
+echo "- system:serviceaccount:logging:aggregated-logging-fluentd"
+read x
 
-# else you can use the default auto-generated certs...
-run_cmd echo "Use auto-generated certs for trust..."
-run_cmd run "oc secrets new metrics-deployer nothing=/dev/null"
+run_cmd run "oadm policy add-cluster-role-to-user cluster-reader system:serviceaccount:logging:aggregated-logging-fluentd"
 
-METRICS="metrics.yaml"
-METRICS_TEMPLATE="/usr/share/ansible/openshift-ansible/roles/openshift_examples/files/examples/infrastructure-templates/enterprise/metrics-deployer.yaml"
 
-echo "Ensuring we have a metrics config file..."
-if [ ! -r ${CONFDIR}/{METRICS} ]
+LOGGING="logging.yaml"
+LOGGING_TEMPLATE="/usr/share/ansible/openshift-ansible/roles/openshift_examples/files/examples/infrastructure-templates/enterprise/logging-deployer.yaml"
+
+echo "Ensuring we have a logging config file..."
+if [ ! -r ${CONFDIR}/{LOGGING} ]
 then
-  if [ -r ${METRICS_TEMPLATE} ]
+  if [ -r ${LOGGING_TEMPLATE} ]
   then
-    cp ${METRICS_TEMPLATE} ${CONFDIR}/{METRICS}
+    cp ${LOGGING_TEMPLATE} ${CONFDIR}/${LOGGING}
   fi
 fi
 
-run_cmd echo "Setting up Hawkular metrics...this will run for some time in the background..."
-run_cmd run "oc process -f ${CONFDIR}/${METRICS} -v IMAGE_PREFIX=openshift3/,IMAGE_VERSION=latest,HAWKULAR_METRICS_HOSTNAME=${OSE_MASTER},USE_PERSISTENT_STORAGE=false | oc create -f -"
+run_cmd echo "Setting up logging deployer using a template..."
+run_cmd run "oc create -n openshift -f ${CONFDIR}/${LOGGING}"
 
-OSE_MASTER_CONFIG=/etc/origin/master/master-config.yaml
-TIMESTAMP="`date +%d%m%y_%m%S`"
+run_cmd echo "Run the deployer (this will take some time to complete in the background)..."
+run_cmd run "oc process logging-deployer-template -n openshift -v KIBANA_HOSTNAME=kibana.example.com,ES_CLUSTER_SIZE=1,PUBLIC_MASTER_URL=https://localhost:8443 | oc create -f -"
 
-echo "Updating OSE Master Config (adding Metrics URL...)"
-if [ -r ${OSE_MASTER_CONFIG} ]
-then
-  grep "metricsPublicURL:" ${OSE_MASTER_CONFIG} >/dev/null 2>&1 || \
-  ( cp ${OSE_MASTER_CONFIG} ${OSE_MASTER_CONFIG}.${TIMESTAMP} && \
-    echo "Made a copy of master file - ${OSE_MASTER_CONFIG}.${TIMESTAMP}" && \
-   sed -i '/assetConfig:/a\ \ metricsPublicURL: https://openshift.example.com/hawkular/metrics' ${OSE_MASTER_CONFIG} )
-fi
-
-echo "Restating Openshift Master..."
-systemctl restart atomic-openshift-master 
-
-echo "WE SHOULD BE DONE HERE!"
+echo "Once the deployer completes, run this command:"
+echo "oc process logging-support-template | oc create -f -"

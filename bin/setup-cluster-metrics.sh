@@ -27,6 +27,7 @@ then
   exit 1
 fi
 
+run_cmd echo "Creating ${PROJECT} project..."
 run_cmd run "oc new-project ${PROJECT}"
 run_cmd echo "Log in to the ${PROJECT} project..."
 run_cmd run "oc project ${PROJECT}"
@@ -72,7 +73,7 @@ if [ ! -r ${CONFDIR}/{METRICS} ]
 then
   if [ -r ${METRICS_TEMPLATE} ]
   then
-    cp ${METRICS_TEMPLATE} ${CONFDIR}/{METRICS}
+    cp ${METRICS_TEMPLATE} ${CONFDIR}/${METRICS}
   fi
 fi
 

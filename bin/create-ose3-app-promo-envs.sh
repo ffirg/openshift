@@ -72,41 +72,36 @@ done
 run_cmd echo "This is the build log..."
 run_cmd run "oc build-logs $APP-1"
 
+oc expose service myapp
+
 run_cmd echo "Check out the image stream:"
-run_cmd run "oc get is"
-run_cmd run "oc describe is"
+run_cmd run "oc get is -n ${DEV_ENV}"
 
 # *this is messy, really quick and dirty!*
-image_ref="`oc get is $APP -o json | grep dockerImageReference | awk -F\\" '{print $4}'`"
+#image_ref="`oc get is $APP -o json | grep dockerImageReference | awk -F\\" '{print $4}' | tail -1`"
+image_ref="latest"
+version="v1"
 
-run_cmd echo "We now tag the image with a \"promote\" label..."
-oc tag $image_ref development/myapp:promote
-run_cmd run "oc get is"
-run_cmd run "oc describe is"
+run_cmd echo "We now tag the image with a \"VERSION 1\" label..."
+run_cmd run "oc tag ${DEV_ENV}/${APP}:${image_ref} ${DEV_ENV}/${APP}:${version}"
+run_cmd run "oc get is -n ${DEV_ENV}"
 
 # now promote image into test env
-run_cmd echo "Now login to the TEST Environment and 'promote' the application..."
+run_cmd echo "Now login to the TEST Environment and 'PROMOTE' the application..."
 run_cmd run "oc login -u test1 -p ''"
 run_cmd run "oc project testing"
-run_cmd run "oc new-app development/myapp:promote"
+run_cmd run "oc new-app ${DEV_ENV}/${APP}:${version} -n ${TEST_ENV}"
 
-run_cmd echo "Let's check out what's been setup in $TEST_ENV..."
-run_cmd run "oc get pods"
-run_cmd run "oc get svc"
-run_cmd run "oc get routes"
 run_cmd echo "There is no external access so we setup a route to expose the service..."
 run_cmd run "oc expose service myapp"
-run_cmd run "oc get routes"
 
 # make change to source code...
 run_cmd echo "NOW SOMEONE MAKES CHANGES TO THE DEV CODE...TIME PASSES..."
-#run_cmd run "oc login -u dev1 -p ''"
-#run_cmd run "oc start-build myapp"
-#run_cmd run "oc get builds"
+run_cmd run "oc login -u dev1 -p ''"
+run_cmd run "oc start-build myapp"
+run_cmd run "oc get builds"
 
-# will now see that dev is on the 'latest' image but test remains on 'promote' version
 run_cmd echo "The DEV environment will be on a new release, but TEST remains on the old one still"
-#run_cmd run "oc describe is"
-# change/fix/revert code as required and re-promote using 'oc tag' again
 run_cmd echo "Use the same 'oc tag' command as before to promote the latest image into the TEST environment"
+
 # THE END
