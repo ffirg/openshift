@@ -51,6 +51,32 @@ check_build () {
   done
 }
 
+# ----------------------------------------------------------------
+# FUNCTION TO WAIT UNTIL HPA HAS BEEN SETUP BEFORE WE PROCEED
+# ----------------------------------------------------------------
+
+check_hpa () {
+  build_status="`oc get hpa | grep waiting | awk '{print $4}'`"
+  while true
+  do
+    if [ -z $build_status ]
+    then
+      echo "Whoops! There is nothing doing here, something went wrong :("
+      exit 99
+    else
+      until [ "$build_status" != "<waiting>" ]
+      do
+        echo "Auto scaling is still $build_status ..."
+        sleep 10
+        build_status="`oc get hpa | grep waiting | awk '{print $4}'`"
+      done
+    fi
+    echo "Auto scaling is setup!"
+    echo
+    break
+  done
+}
+
 # -------------------------------------------------------------------------------
 # RETURN OC VERSION IN CASE THINGS CHANGE ACROSS REVISIONS (& THEY DO)
 # VERSION 3.1 RETURNS "3.1.0"

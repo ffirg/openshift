@@ -5,10 +5,10 @@ metadata:
 spec:
   scaleRef:
     kind: DeploymentConfig 
-    name: blue
+    name: welcome-php
     apiVersion: v1 
     subresource: scale
-  minReplicas: 2 
-  maxReplicas: 5 
+  minReplicas: 1 
+  maxReplicas: 5
   cpuUtilization:
     targetPercentage: 5
