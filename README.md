@@ -33,6 +33,13 @@ Demonstrates how an application can be 'promoted' from one environment (namespac
 $ ./create-ose3-app-promo-envs.sh
 ```
 
+#### Horizontal CPU Auto Application Scaling
+Demonstrates how an application can use cluster metrics and horizontal pod scaling based on CPU load. Deploys a welcome-php application, setups up project quota and CPU scaling resource controls and generates some HTTP traffic to showcase auto pod scale up/down.
+
+```
+$ ./create-ose3-app-auto-cpu-scaling.sh
+```
+
 
 #### Blue Green Deployment 
 Demonstrates how you can deploy 2 versions of the same application, and quickly change the exposed route between them to allow one service or the other to be used. This example could be used in environments where there is still fairly rigid change control, who like a more 'big bang' release approach still. Could also be used for DR testing for the application on a regular basis! See https://www.youtube.com/watch?v=Rzsa6VJRGDw for a demo. 

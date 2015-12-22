@@ -33,9 +33,9 @@ create-ose3-app-promo-envs.sh
 Creates an Application Promotion style scenario.
 
 ```
-load_cpu.sh
+create-ose3-app-auto-cpu-scaling.sh
 ```
-Used to generate CPU load for showcasing resource/scaling controls.
+Setup and demonstrate CPU load for showcasing resource/scaling controls.
 
 ```
 pullimages.sh
