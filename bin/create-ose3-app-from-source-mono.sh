@@ -27,7 +27,7 @@ run_cmd echo "Create a new Mono app from source..."
 run_cmd run "oc new-app ${SRC}"
 
 # wait until the build is finished before going on...
-check_build ${APP}
+sleep 10 && check_build ${APP}
 
 run_cmd echo "Let's expose the service so it's accessible..."
 run_cmd run "oc expose service $APP"
