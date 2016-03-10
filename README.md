@@ -40,6 +40,13 @@ Demonstrates how an application can use cluster metrics and horizontal pod scali
 $ ./create-ose3-app-auto-cpu-scaling.sh
 ```
 
+#### Create Application Just From Source Dockerfile, Using Mono
+Demonstrates how you can create an application just from a source Dockerfile. This is hosted on Github and builds a sample Mono demo framework application which you can access from the Openshift GUI.
+
+```
+$ ./create-ose3-app-from-source-mono.sh
+```
+
 
 #### Blue Green Deployment 
 Demonstrates how you can deploy 2 versions of the same application, and quickly change the exposed route between them to allow one service or the other to be used. This example could be used in environments where there is still fairly rigid change control, who like a more 'big bang' release approach still. Could also be used for DR testing for the application on a regular basis! See https://www.youtube.com/watch?v=Rzsa6VJRGDw for a demo. 
