@@ -38,6 +38,11 @@ create-ose3-app-auto-cpu-scaling.sh
 Setup and demonstrate CPU load for showcasing resource/scaling controls.
 
 ```
+create-ose3-app-from-source-mono.sh
+```
+Create and run an application from just a source Dockerfile, using Mono as the example.
+
+```
 pullimages.sh
 ```
 Pre-populate some of the more common images used so they are in the local registry.
