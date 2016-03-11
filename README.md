@@ -77,6 +77,15 @@ $ git clone https://github.com/ffirg/openshift.git
 $ cd openshift/bin
 $ ./create-ose3-app-ab-deployment.sh
 ```
+or
+```
+$ vagrant up
+$ vagrant ssh
+$ sudo -i
+$ git clone https://github.com/ffirg/openshift.git
+$ cd openshift/bin
+$ ./create-ose3-app-ab-deployment.sh
+```
 Follow the prompts! Some scripts need to be as run (for system:admin privileges) but the scripts check and advise :)
 
 ### Cleaning Up
