@@ -12,7 +12,7 @@ run_cmd () {
  then
    shift
    action="$*"
-   echo $action
+   echo -e $action
    echo "<RETURN> when ready"
    read x
  elif [ $1 = "run" ]
