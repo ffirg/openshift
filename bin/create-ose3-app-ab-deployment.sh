@@ -49,7 +49,7 @@ run_cmd echo "We now have TWO services:"
 run_cmd run "oc get svc"
 
 run_cmd echo "Let's expose a route for the new service:"
-run_cmd run "oc expose service ab-service --name=ab-route --hostname=abdeploy.example.com"
+run_cmd run "oc expose service ab-service --name=ab-route --hostname=abdeploy.192.168.99.100.xip.io"
 
 run_cmd echo "Let's now scale up the service, to cope with more incoming load..."
 oc scale dc/$APP1 --replicas=$pods

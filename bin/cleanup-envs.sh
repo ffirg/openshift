@@ -2,7 +2,7 @@
 
 PROJECT="_null_"
 PROJECTS="`oc get projects -o name | sed -e 's/project\///'`"
-DEMO_USER="demo"
+DEMO_USER="admin"
 
 . ../libs/functions
 
