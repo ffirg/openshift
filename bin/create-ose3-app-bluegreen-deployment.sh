@@ -38,7 +38,7 @@ run_cmd run "oc new-app $SRC --name=$BLUE_APP"
 check_build $BLUE_APP
 
 run_cmd echo -e "${RED}Let's take a look at the build log...${NC}"
-run_cmd run "oc build-logs ${BLUE_APP}-1"
+run_cmd run "oc logs build/${BLUE_APP}-1"
 
 run_cmd echo -e "${RED}Check out the service name:${NC}"
 run_cmd run "oc get svc"
@@ -61,9 +61,11 @@ run_cmd echo -e "${RED}Check out the service names again:${NC}"
 run_cmd run "oc get svc"
 
 run_cmd echo -e "${RED}Now let's change the route to expose the new service:${NC}"
-run_cmd run "oc edit route $PROJECT"
+run_cmd echo "You can edit the route directly using: oc edit route $PROJECT"
+run_cmd echo "But we'll do this using good old sed :)"
+run_cmd run "oc get route/bluegreen -o yaml | sed -e 's/name: blue$/name: green/' | oc replace -f -"
 
 run_cmd echo -e "${RED}DANGER! DANGER! Code is broken, switch back quick!!!${NC}"
-run_cmd run "oc edit route $PROJECT"
+run_cmd run "oc get route/bluegreen -o yaml | sed -e 's/name: green$/name: blue/' | oc replace -f -"
 
 # THE END
