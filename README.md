@@ -15,6 +15,15 @@ cd openshift/bin
 
 Using demobuilder all-in-one image as your base (https://github.com/RedHatEMEA/demobuilder), open up the console and fire up the Firefox browser and a Terminal.
 
+Using Red Hat Container Development Kit (CDK), you may need to run the script under root
+```
+vagrant up
+vagrant ssh
+sudo -i
+git clone https://github.com/ffirg/openshift.git
+cd openshift/bin
+~~~
+
 ### What They Demo
 
 #### MLB Parks 
@@ -58,7 +67,8 @@ $ ./create-ose3-app-bluegreen-deployment.sh
 ##### Demo steps
 1. Please fork the project https://github.com/VeerMuchandi/bluegreen.  
 2. vi the create-ose3-app-bluegreen-deployment.sh script to reference the new forked project (SRC= line near the top)
-3. ./create-ose3-app-bluegreen-deployment.sh  Once you build the "blue" service, you need to pop over to your forked repo and do a code change to image.php (comment out blue and uncomment green).  Run through the rest of the script. 
+3. If using the Container Development Kit (CDK), you also need to change the domain of the created services from example.com to cdk.vm
+4. ./create-ose3-app-bluegreen-deployment.sh  Once you build the "blue" service, you need to pop over to your forked repo and do a code change to image.php (comment out blue and uncomment green).  Run through the rest of the script. 
 
 #### AB Deployment 
 Demonstrates how to do rolling A-B or Canary style deployment. Bring application version 1 into service. Then change the code to make version 2 and deploy that into the service but in incremental stages. Turn off version 1, once everyones happy with version 2. Enables a lower risk application deployment strategy, with rollback capabilities.
@@ -66,7 +76,8 @@ Demonstrates how to do rolling A-B or Canary style deployment. Bring application
 ##### Demo steps
 1. Please fork the project https://github.com/VeerMuchandi/ab-deploy.git
 2. vi create-ose3-app-ab-deployment.sh script to reference the new forked project (SRC= line near the top)
-3. ./create-ose3-app-ab-deployment.sh (Once it builds "app-a", you need to pop over to your forked repo and do a code change to index.php - the script will tell you this). Run through the rest of the script. 
+3. If using the Container Development Kit (CDK), you also need to change the domain of the created services from example.com to cdk.vm
+4. ./create-ose3-app-ab-deployment.sh (Once it builds "app-a", you need to pop over to your forked repo and do a code change to index.php - the script will tell you this). Run through the rest of the script. 
 
 
 ### Running
