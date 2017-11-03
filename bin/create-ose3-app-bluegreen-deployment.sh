@@ -8,7 +8,7 @@ export EDITOR=vim # needed on Mac for a workaround to using vi!
 
 export BLUE_APP="blue"
 export GREEN_APP="green"
-USER="admin"
+USER="developer"
 PROJECT="bluegreen"
 SRC="https://github.com/ffirg/bluegreen.git"
 build_status="NULL"
@@ -62,8 +62,11 @@ run_cmd run "oc get svc"
 
 run_cmd echo -e "${RED}Now let's change the route to expose the new service:${NC}"
 run_cmd echo "You can edit the route directly using: oc edit route $PROJECT"
+run_cmd echo "Or even directly with oc patch"
 run_cmd echo "But we'll do this using good old sed :)"
 run_cmd run "oc get route/bluegreen -o yaml | sed -e 's/name: blue$/name: green/' | oc replace -f -"
+# can also now use 'oc patch' directly
+# oc patch route/bluegreen -p '{"spec":{"to":{"name":"blue"}}}'
 
 run_cmd echo -e "${RED}DANGER! DANGER! Code is broken, switch back quick!!!${NC}"
 run_cmd run "oc get route/bluegreen -o yaml | sed -e 's/name: green$/name: blue/' | oc replace -f -"

@@ -3,9 +3,9 @@
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
-APP="mlbparks-eap"
-TEMPLATE="https://raw.githubusercontent.com/gshipley/openshift3mlbparks/master/mlbparks-template-eap.json"
-USER="admin"
+APP="mlbparks-wildfly"
+TEMPLATE="https://raw.githubusercontent.com/gshipley/openshift3mlbparks/master/mlbparks-template-wildfly.json"
+USER="developer"
 PROJECT="mlbparks"
 build_status="NULL"
 

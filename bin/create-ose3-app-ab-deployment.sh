@@ -3,7 +3,7 @@
 export APPNAME="ab-demo-app"
 APPv1="version=1"
 APPv2="version=2"
-DEMO_USER="admin"
+DEMO_USER="developer"
 PROJECT="abdeployment"
 SRC="https://github.com/ffirg/ab-deploy.git"
 NAME="abdeploy.192.168.99.100.xip.io"

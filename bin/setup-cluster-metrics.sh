@@ -1,11 +1,11 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 #
 # Setup OSE cluster metrics for centralised logging
 # This is a pre requisite for CPU auto-scaling :)
 #
 
-OSE_MASTER="openshift.example.com"
+OSE_MASTER="192.168.99.100"
 LIBDIR="../libs"
 CONFDIR="../conf"
 USER="demo"
