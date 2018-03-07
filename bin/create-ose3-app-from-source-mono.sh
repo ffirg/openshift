@@ -1,8 +1,8 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 APP="mono"
 SRC="https://github.com/ffirg/mono.git"
-DEMO_USER="demo"
+DEMO_USER="developer"
 PROJECT="mono"
 build_status="NULL"
 
