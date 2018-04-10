@@ -71,7 +71,7 @@ run_cmd echo "and do the curl test again:"
 for i in {1..10}; do curl `oc get route|grep "${APPNAME}-${VERSION}"|awk '{print $2}'`; echo " "; done
 
 run_cmd echo "Now let's scale down $APPv1 and $APPv2 up..."
-run_cmd run "oc scale dc/${APPNAME}-v1 --replicas=2"
+run_cmd run "oc scale dc/${APPNAME} --replicas=2"
 run_cmd run "oc scale dc/${APPNAME}-v2 --replicas=2"
 
 run_cmd echo "The curl test again:"
@@ -80,7 +80,7 @@ run_cmd echo "The curl test again:"
 for i in {1..10}; do curl `oc get route|grep "${APPNAME}"|awk '{print $2}'`; echo " "; done
 
 run_cmd echo "Version 2 looks great, so let's rolls that out and retire version 1..."
-run_cmd run "oc scale dc/${APPNAME}-v1 --replicas=0"
+run_cmd run "oc scale dc/${APPNAME} --replicas=0"
 run_cmd run "oc scale dc/${APPNAME}-v2 --replicas=4"
 
 run_cmd echo "We're now running only VERSION 2:"
