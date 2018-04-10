@@ -47,7 +47,8 @@ run_cmd echo -e "${RED}We have no route, so the service isn't exposed:${NC}"
 run_cmd run "oc get route"
 
 run_cmd echo -e "${RED}Let's expose the service now...${NC}"
-run_cmd run "oc expose svc blue --name=bluegreen --hostname=bluegreen.192.168.99.100.xip.io"
+#run_cmd run "oc expose svc blue --name=bluegreen --hostname=bluegreen.192.168.99.100.xip.io"
+run_cmd run "oc expose svc blue --name=bluegreen"
 
 run_cmd echo "NOW CHANGE THE SOURCE CODE @ ${SRC} . Change image.php from ${BLUE}${BLUE_APP}${NC} to ${GREEN}${GREEN_APP}${NC}."
 
