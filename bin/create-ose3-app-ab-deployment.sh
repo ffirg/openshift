@@ -64,7 +64,7 @@ run_cmd run "oc get pods"
 
 run_cmd echo "Let's expose a second route for the new version:"
 #run_cmd run "oc expose service ${APPNAME}-v2 --name=${APPNAME}-v2 --hostname=v2.${NAME}"
-run_cmd run "oc expose service ${APPNAME} --name=${APPNAME}-${VERSION}"
+run_cmd run "oc expose service ${APPNAME}-${VERSION} --name=${APPNAME}-${VERSION}"
 
 run_cmd echo "and do the curl test again:"
 #for i in {1..10}; do curl v2.${NAME}; echo " "; done
