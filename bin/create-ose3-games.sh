@@ -30,6 +30,7 @@ echo "2 Arena5"
 echo "3 Pixel Race"
 echo "4 2048"
 echo "5 Pacman"
+echo "6 Hextris"
 read ans
 
 case "$ans" in
@@ -52,6 +53,10 @@ case "$ans" in
   5 )
     export APP="pacman"
     export SRC="https://github.com/daleharvey/pacman"
+    ;;
+  6 )
+    export APP="hextris"
+    export SRC="https://github.com/Hextris/hextris"
     ;;
 esac
 
