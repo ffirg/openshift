@@ -25,12 +25,14 @@ run_cmd run "oc project $PROJECT"
 
 # choose a game!
 echo "Which game would you like?"
+echo ""
 echo "1 Flappy Birds"
 echo "2 Arena5"
 echo "3 Pixel Race"
 echo "4 2048"
 echo "5 Pacman"
 echo "6 Hextris"
+echo ""
 read ans
 
 case "$ans" in
