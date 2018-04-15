@@ -2,6 +2,15 @@
 # functions: stuff we use over and over again...
 #
 
+# ----------------------------------------------------------------
+# FUNCTION TO SETUP COLOURS TO BE USED WHEN RUNNING ECHOs
+# ----------------------------------------------------------------
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
 # ---------------------------------------------
 # FUNCTION TO DO THE GRUNT WORK, STEP BY STEP
 # [WE EITHER ECHO A COMMAND OR RUN IT...]
@@ -19,7 +28,7 @@ run_cmd () {
  then
    shift
    action="$*"
-   echo $action
+   echo -e "${GREEN}$action${NC}"
    eval $action
    echo
  fi
