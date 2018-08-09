@@ -14,10 +14,12 @@ cleanup () {
   oc delete pvc -n ${PROJECT} --all 2>/dev/null
   oc delete svc ${APP} -n ${PROJECT} 2>/dev/null
   oc delete route ${APP} -n ${PROJECT} 2>/dev/null
+  oc delete project ${PROJECT} 2>/dev/null
+  rm -rf ${APP} 2>/dev/null
   exit
 }
 
-if [ $1 = "cleanup" ]
+if [ "$1" = "cleanup" ]
 then
   cleanup
 fi
