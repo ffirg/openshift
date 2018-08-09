@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# example coded the most excellent blog by Michael Hausenblas https://goo.gl/C9g356
+
 APP="mehdb"
 STS="mehdb"
 PROJECT="mehdb"
