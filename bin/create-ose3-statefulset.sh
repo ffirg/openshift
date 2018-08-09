@@ -43,15 +43,22 @@ git clone https://github.com/ffirg/mehdb.git && cd mehdb
 run_cmd echo "Insert the config using oc apply..."
 run_cmd run "oc apply -f app.yaml -n ${PROJECT}"
 
+run_cmd echo "Let's expose the service so it's accessible..."
+run_cmd run "oc expose service $APP"
+
+pod_status="`oc get pods -n mehdb | grep ${APP}-0 | awk '{print $3}'`"
+  until [ $pod_status = "Running" ]
+  do
+    echo "Waiting for pod to be running..."
+    sleep 5
+    pod_status="`oc get pods -n mehdb | grep ${APP}-0 | awk '{print $3}'`"
+  done
+
 run_cmd echo "Let's log into a container and inject some sample data..."
-run_cmd run "oc rsh mehdb-0"
-echo "test data" > /tmp/test
+oc rsh mehdb-0 <<EOF
+echo "THIS IS TEST DATA FROM FILE /tmp/test" > /tmp/test
 curl -L -XPUT -T /tmp/test mehdb:9876/set/test
-curl mehdb:9876/get/test
-curl mehdb-1.mehdb:9876/get/test
+EOF
 
-# run_cmd echo "We can scale up (& down) the service..."
-# run_cmd run "oc scale -n ${PROJECT} sts ${STS} --replicas=4"
-
-# run_cmd echo "Let's expose the service so it's accessible..."
-# run_cmd run "oc expose service $APP"
+run_cmd echo "We can scale up (& down) the service..."
+run_cmd run "oc scale -n ${PROJECT} sts ${STS} --replicas=4"
