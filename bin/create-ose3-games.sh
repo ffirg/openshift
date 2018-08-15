@@ -32,6 +32,7 @@ echo "3 Pixel Race"
 echo "4 2048"
 echo "5 Pacman"
 echo "6 Hextris"
+echo "7 Pool"
 echo ""
 read ans
 
@@ -59,6 +60,10 @@ case "$ans" in
   6 )
     export APP="hextris"
     export SRC="https://github.com/Hextris/hextris"
+    ;;
+  7 )
+    export APP="pool"
+    export SRC="https://github.com/henshmi/Classic-Pool-Game"
     ;;
 esac
 
