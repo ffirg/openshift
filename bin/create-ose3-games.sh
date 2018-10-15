@@ -33,6 +33,7 @@ echo "4 2048"
 echo "5 Pacman"
 echo "6 Hextris"
 echo "7 Pool"
+echo "8 Battleships (2 Player)"
 echo ""
 read ans
 
@@ -64,6 +65,10 @@ case "$ans" in
   7 )
     export APP="pool"
     export SRC="https://github.com/henshmi/Classic-Pool-Game"
+    ;;
+  8 )
+    export APP="battleships"
+    export SRC="https://github.com/nixsolutions/demo-phaser-battleship"
     ;;
 esac
 
