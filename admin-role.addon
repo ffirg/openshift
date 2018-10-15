@@ -1,5 +1,0 @@
-# Name: admin-role
-# Description: Gives the developer user cluster-admin privileges
-
-oc adm policy add-role-to-user cluster-admin developer
-
