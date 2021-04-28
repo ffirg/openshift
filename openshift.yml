@@ -4,8 +4,8 @@
   gather_facts: no
 
   vars:
-    ansible_python_interpreter: '{{ ansible_playbook_python }}'
-#    ansible_python_interpreter: /Users/pgriffit/ansible-navigator_demo/venv/bin/python
+#    ansible_python_interpreter: '{{ ansible_playbook_python }}'
+    ansible_python_interpreter: /var/lib/awx/venv/ansible/bin/python
 
   tasks:
 
